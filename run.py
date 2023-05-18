@@ -150,4 +150,62 @@ def get_col():
         except ValueError:
             print("\nPlease enter a number")
 
+# Create the ships
+
+temp = 0
+while temp < num_ships:
+    ship_info = random_location()
+    if ship_info == 'None':
+        continue
+    else:
+        ship_list.append(Ship(ship_info['size'], ship_info['orientation'], ship_info['location']))
+        temp += 1
+del temp
+
+# Play Game
+os.system('clear')
+print_board(board_display)
+
+for turn in range(num_turns):
+    print("Turn:", turn + 1, "of", num_turns)
+    print("Ships left:", len(ship_list))
+    print()
+
+    guess_coords = {}
+    while True:
+        guess_coords['row'] = get_row()
+        guess_coords['col'] = get_col()
+        if board_display[guess_coords['row']][guess_coords['col']] == 'X' or \ board_display[guess_coords['row']][guess_coords['col']] == '*':
+            print("\nYou guessed that one already.")
+        else:
+            break
+
+    os.system('clear')
+
+    ship_hit = False
+
+    for ship in ship_list:
+        if ship.contains(guess_coords):
+            print("Hit!")
+            ship_hit = True
+            board_display[guess_coords['row']][guess_coords['col']] = 'X'
+            if ship.destroyed():
+                print("Ship Destroyed!")
+                ship_list.remove(ship)
+            break
+    if not ship_hit:
+        board_display[guess_coords['row']][guess_coords['col']] = '*'
+        print("You missed!")
+
+        print_board(board_display
+
+    if not ship_list:
+        break
+
+# End Game
+if ship_list:
+    print("You lose!")
+else:
+    print("All the ships are sunk. You win!")
+
 
