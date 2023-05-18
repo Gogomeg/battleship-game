@@ -126,5 +126,28 @@ def random_location():
     else:
         return {'location': locations[randint(0, len(locations) - 1)], 'size': size,\'orientation': orientation}
 
+#Validate row input
+def get_row():
+    while True:
+        try:
+            guess = int(input("Row Guess: "))
+            if guess in range(1, row_size + 1):
+                return guess - 1
+            else:
+                print("\nOops, that's not even in the range 1 - 5.")
+        except ValueError:
+            print("\nPlease enter a number")
+
+#Validate column input
+def get_col():
+    while True:
+        try:
+            guess = int(input("Column Guess: "))
+            if guess in range(1, col_size + 1):
+                return guess - 1
+            else:
+                print("\nOops, that's not even in the range 1 - 5.")
+        except ValueError:
+            print("\nPlease enter a number")
 
 
