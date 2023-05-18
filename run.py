@@ -1,3 +1,45 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+from random import randint
+import os
+
+class Ship:
+    """
+    Main board class. Sets board size, the number of ships, 
+    the player's name and the board type (player board or computer board). 
+    Has methods for adding ships and guesses and printing the board
+    """
+
+    def __init__(self, size, orientation, location):
+        self.size = size
+
+        if orientation == 'horizontal' or orientation == 'vertical':
+            self.orientation = orientation
+        else:
+            raise ValueError("Value must be 'horizontal' or 'vertical'.")
+    
+        if orientation == 'horizontal':
+            if location['row'] in range(row_size):
+                self.coordinates = []
+                for index in range(size):
+                    if location['col'] + index in range(col_size):
+                        self.coordinates.append({'row': location['row'], 'col': location['col'] + index})
+                    else:
+                        raise IndexError("Column is out of range.")
+            else:
+                raise IndexError("Row is out of range.")
+        elif orientation == 'vertical':
+            if location['col'] in range(col_size):
+                self.coordinates = []
+                for index in range(size):
+                    if location['row'] + index in range(row_size):
+                        self.coordinates.append({'row': location['row'] + index, 'col': location['col']})
+                    else:
+                        raise IndexError("Row is out of range.")
+        else:
+            raise IndexError("Column is out of range.")
+    
+        if self.filled():
+            print_board(board)
+            print(" ".join(str(coords) for coords in self.coordinates))
+            raise IndexError("A ship already occupies that space.")
+        else:
+            self.fillBoard()
