@@ -43,3 +43,28 @@ class Ship:
             raise IndexError("A ship already occupies that space.")
         else:
             self.fillBoard()
+
+#Validate coordinates
+    def filled(self):
+        for coords in self.coordinates:
+            if board[coords['row']][coords['col']] == 1:
+                return True
+            return False
+
+    def fillBoard(self):
+        for coords in self.coordinates:
+            board[coords['row']][coords['col']] = 1
+
+    def contains(self, location):
+        for coords in self.coordinates:
+            if coords == location:
+                return True
+            return False
+
+    def destroyed(self):
+        for coords in self.coordinates:
+            if board_display[coords['row']][coords['col']] == 'O':
+                return False
+            elif board_display[coords['row']][coords['col']] == '*':
+                raise RuntimeError("Board display inaccurate")
+            return True
