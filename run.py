@@ -68,3 +68,18 @@ class Ship:
             elif board_display[coords['row']][coords['col']] == '*':
                 raise RuntimeError("Board display inaccurate")
             return True
+
+#Settings Variables
+row_size = 5 
+col_size = 5 
+num_ships = 4
+max_ship_size = 5
+min_ship_size = 2
+num_turns = 10
+
+#Create lists
+ship_list = []
+
+board = [[0] * col_size for x in range(row_size)]
+
+board_display = [["O"] * col_size for x in range(row_size)]
