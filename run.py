@@ -86,8 +86,8 @@ board_display = [["O"] * col_size for x in range(row_size)]
 #Functions
 def print_board(board_array):
     print("\n  " + " ".join(str(x) for x in range(1, col_size + 1)))
-        for r in range(row_size):
-            print(str(r + 1) + " " + " ".join(str(c) for c in board_array[r]))
+    for r in range(row_size):
+        print(str(r + 1) + " " + " ".join(str(c) for c in board_array[r]))
         print()
 
 #Validate coordinates
@@ -124,7 +124,8 @@ def random_location():
     if locations == 'None':
         return 'None'
     else:
-        return {'location': locations[randint(0, len(locations) - 1)], 'size': size,\'orientation': orientation}
+        return {'location': locations[randint(0, len(locations) - 1)], 'size': size,\
+        'orientation': orientation}
 
 #Validate row input
 def get_row():
@@ -175,7 +176,8 @@ for turn in range(num_turns):
     while True:
         guess_coords['row'] = get_row()
         guess_coords['col'] = get_col()
-        if board_display[guess_coords['row']][guess_coords['col']] == 'X' or \ board_display[guess_coords['row']][guess_coords['col']] == '*':
+        if board_display[guess_coords['row']][guess_coords['col']] == 'X' or \
+        board_display[guess_coords['row']][guess_coords['col']] == '*':
             print("\nYou guessed that one already.")
         else:
             break
@@ -197,7 +199,7 @@ for turn in range(num_turns):
         board_display[guess_coords['row']][guess_coords['col']] = '*'
         print("You missed!")
 
-        print_board(board_display
+        print_board(board_display)
 
     if not ship_list:
         break
